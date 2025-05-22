@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import { DetailedGame } from "@/types"
 import Header from "@/components/layout/Header"
 import OddDetailsClient from "./OddDetailsClient"
+import type { Metadata } from "next"
 
 interface OddPageProps {
   params: Promise<{ gameId: string }>
@@ -46,19 +47,45 @@ export default async function OddPage({ params }: OddPageProps) {
   )
 }
 
-export async function generateMetadata({ params }: OddPageProps) {
-  const { gameId } = await params
-  const oddDetails = await getOddDetails(gameId)
+export async function generateMetadata({ params }: OddPageProps): Promise<Metadata> {
+  const { gameId } = await params;
+  const oddDetails = await getOddDetails(gameId);
 
   if (!oddDetails) {
     return {
-      title: "Jogo não encontrado - ANA Gaming",
-      description: "O jogo solicitado não foi encontrado.",
-    }
+      title: 'Jogo não encontrado',
+      description: 'O jogo solicitado não foi encontrado.',
+      robots: { index: false, follow: false },
+    };
   }
 
+  const bestOdd = Math.min(...oddDetails.bestOdds.map(odd => odd.value));
+  
   return {
-    title: `${oddDetails.name} - Odds e Apostas | ANA Gaming`,
-    description: `Veja todas as odds e mercados de apostas para ${oddDetails.name}. Compare as melhores cotações de diferentes casas de apostas.`,
-  }
+    title: `${oddDetails.name} - Odds ao Vivo`,
+    description: `Acompanhe as odds de ${oddDetails.name} em tempo real. Melhor odd: ${bestOdd.toFixed(2)}. Compare cotações de diferentes casas de apostas.`,
+    keywords: [
+      oddDetails.homeTeam || '',
+      oddDetails.awayTeam || '',
+      oddDetails.category || '',
+      oddDetails.league || '',
+      'odds',
+      'apostas',
+      'cotações'
+    ],
+    openGraph: {
+      title: `${oddDetails.name} - Odds ao Vivo`,
+      description: `Melhor odd: ${bestOdd.toFixed(2)} | ${oddDetails.league}`,
+      type: 'article',
+      publishedTime: new Date().toISOString(),
+      modifiedTime: new Date().toISOString(),
+      section: oddDetails.category,
+      tags: [oddDetails.homeTeam || '', oddDetails.awayTeam || '', oddDetails.category || ''],
+    },
+    twitter: {
+      card: 'summary',
+      title: `${oddDetails.name} - Odds ao Vivo`,
+      description: `Melhor odd: ${bestOdd.toFixed(2)}`,
+    },
+  };
 }
