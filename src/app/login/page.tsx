@@ -10,7 +10,6 @@ export default function LoginPage() {
     const {data: session, status} = useSession()
     const router = useRouter()
 
-
     useEffect(() => {
         if (status === 'authenticated') {
             router.push('/dashboard')
