@@ -39,13 +39,6 @@ export default function Header() {
             </Link>
           </motion.div>
 
-          <nav className="hidden md:flex items-center space-x-8">
-            <NavLink href="/dashboard" icon="🏠">Dashboard</NavLink>
-            <NavLink href="/odds" icon="📊">Live Odds</NavLink>
-            <NavLink href="/results" icon="🏆">Resultados</NavLink>
-            <NavLink href="/statistics" icon="📈">Estatísticas</NavLink>
-          </nav>
-
           <div className="hidden md:flex items-center space-x-4">
             {session ? (
               <div className="flex items-center space-x-4">
@@ -125,20 +118,6 @@ export default function Header() {
         </div>
       </div>
     </motion.header>
-  )
-}
-
-function NavLink({ href, children, icon }: { href: string; children: React.ReactNode; icon: string }) {
-  return (
-    <motion.div whileHover={{ scale: 1.05 }}>
-      <Link
-        href={href}
-        className="flex items-center space-x-2 text-blue-100 hover:text-white font-medium transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-white/10"
-      >
-        <span>{icon}</span>
-        <span>{children}</span>
-      </Link>
-    </motion.div>
   )
 }
 
