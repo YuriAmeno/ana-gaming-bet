@@ -13,9 +13,12 @@ export async function GET(request: Request, { params }: { params: Promise<{ game
   }
 
   try {
-    const indexResponse = await fetch(`${process.env.APP_URL || 'http://localhost:3000'}/api/games-index`, {
-      cache: 'no-store'
-    })
+    const indexResponse = await fetch(
+      `${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/games-index`,
+      {
+        cache: 'no-store',
+      }
+    );
     
     if (indexResponse.ok) {
       const gamesIndex = await indexResponse.json()

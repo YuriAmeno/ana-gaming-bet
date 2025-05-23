@@ -6,7 +6,7 @@ import DashboardClient from "./DashboardClient";
 
 async function getHomePageData(): Promise<{ categories: SportCategory[]; games: Game[] }> {
   try {
-    const baseUrl = process.env.APP_URL || "http://localhost:3000"
+    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000"
 
     const sportsResponse = await fetch(`${baseUrl}/api/sports`, { cache: "no-store" })
     if (!sportsResponse.ok) {
@@ -47,7 +47,7 @@ async function getHomePageData(): Promise<{ categories: SportCategory[]; games: 
 
 async function getGamesFromIndex(): Promise<Game[]> {
   try {
-    const baseUrl = process.env.APP_URL || "http://localhost:3000"
+    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/games-index`, {
       cache: 'no-store'
     })

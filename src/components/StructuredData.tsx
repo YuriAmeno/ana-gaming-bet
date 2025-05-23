@@ -17,11 +17,11 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           ...baseSchema,
           '@type': 'WebSite',
           name: 'ANA Gaming',
-          url: process.env.APP_URL,
+          url: process.env.NEXTAUTH_URL,
           description: 'Plataforma de visualização de apostas esportivas',
           potentialAction: {
             '@type': 'SearchAction',
-            target: `${process.env.APP_URL}/search?q={search_term_string}`,
+            target: `${process.env.NEXTAUTH_URL}/search?q={search_term_string}`,
             'query-input': 'required name=search_term_string',
           },
         };
@@ -54,8 +54,8 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
           ...baseSchema,
           '@type': 'Organization',
           name: 'ANA Gaming',
-          url: process.env.APP_URL,
-          logo: `${process.env.APP_URL}/logo.png`,
+          url: process.env.NEXTAUTH_URL,
+          logo: `${process.env.NEXTAUTH_URL}/logo.png`,
           description: 'Plataforma líder em visualização de odds de apostas esportivas',
           sameAs: ['https://twitter.com/anagaming', 'https://linkedin.com/company/anagaming'],
         };
