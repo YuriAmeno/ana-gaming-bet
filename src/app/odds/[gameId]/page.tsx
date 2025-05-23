@@ -10,7 +10,7 @@ interface OddPageProps {
 
 async function getOddDetails(gameId: string): Promise<DetailedGame | null> {
   try {
-    const baseUrl = process.env.APP_URL || "http://localhost:3000"
+    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
     const response = await fetch(`${baseUrl}/api/games/${gameId}?regions=us`, {
       cache: "no-store",
     })

@@ -17,62 +17,63 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.APP_URL || "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
   title: {
-    default: "ANA Gaming - Plataforma de Apostas Esportivas",
-    template: "%s | ANA Gaming"
+    default: 'ANA Gaming - Plataforma de Apostas Esportivas',
+    template: '%s | ANA Gaming',
   },
-  description: "A melhor plataforma para visualizar odds de apostas esportivas. Compare cotações de diferentes casas de apostas e encontre as melhores oportunidades.",
+  description:
+    'A melhor plataforma para visualizar odds de apostas esportivas. Compare cotações de diferentes casas de apostas e encontre as melhores oportunidades.',
   keywords: [
-    "apostas esportivas",
-    "odds",
-    "futebol",
-    "basquete",
-    "tênis",
-    "esports",
-    "comparação de odds",
-    "casas de apostas"
+    'apostas esportivas',
+    'odds',
+    'futebol',
+    'basquete',
+    'tênis',
+    'esports',
+    'comparação de odds',
+    'casas de apostas',
   ],
-  authors: [{ name: "ANA Gaming" }],
-  creator: "ANA Gaming",
-  publisher: "ANA Gaming",
+  authors: [{ name: 'ANA Gaming' }],
+  creator: 'ANA Gaming',
+  publisher: 'ANA Gaming',
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
   },
   openGraph: {
-    type: "website",
-    locale: "pt_BR",
-    url: process.env.APP_URL || "http://localhost:3000",
-    siteName: "ANA Gaming",
-    title: "ANA Gaming - Plataforma de Apostas Esportivas",
-    description: "Compare odds de apostas esportivas e encontre as melhores oportunidades.",
+    type: 'website',
+    locale: 'pt_BR',
+    url: process.env.NEXTAUTH_URL || 'http://localhost:3000',
+    siteName: 'ANA Gaming',
+    title: 'ANA Gaming - Plataforma de Apostas Esportivas',
+    description: 'Compare odds de apostas esportivas e encontre as melhores oportunidades.',
     images: [
       {
-        url: "/og-image.png",
+        url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: "ANA Gaming - Plataforma de Apostas",
+        alt: 'ANA Gaming - Plataforma de Apostas',
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "ANA Gaming - Plataforma de Apostas Esportivas",
-    description: "Compare odds de apostas esportivas e encontre as melhores oportunidades.",
-    images: ["/og-image.png"],
+    card: 'summary_large_image',
+    title: 'ANA Gaming - Plataforma de Apostas Esportivas',
+    description: 'Compare odds de apostas esportivas e encontre as melhores oportunidades.',
+    images: ['/og-image.png'],
   },
   verification: {
-    google: "SEU_GOOGLE_SITE_VERIFICATION_CODE",
+    google: 'SEU_GOOGLE_SITE_VERIFICATION_CODE',
   },
-}
+};
 
 export const viewport: Viewport = {
   width: "device-width",
