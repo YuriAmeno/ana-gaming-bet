@@ -13,8 +13,7 @@
     "type-check": "tsc --noEmit",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "prepare": "husky install"
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

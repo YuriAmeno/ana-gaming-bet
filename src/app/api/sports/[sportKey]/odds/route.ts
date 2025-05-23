@@ -58,6 +58,8 @@ export async function GET(
               name: outcome.name,
               value: outcome.price,
               provider: bookmaker.title,
+              bookmaker: bookmaker as unknown as Game['bestOdds'][0]['bookmaker'],
+              outcome: outcome as unknown as Game['bestOdds'][0]['outcome']
             })
           })
         }
@@ -70,6 +72,12 @@ export async function GET(
         startTime: new Date(game.commence_time),
         category: game.sport_title,
         league: game.sport_title,
+        homeTeam: game.home_team,
+        awayTeam: game.away_team,
+        sportKey: sportKey,
+        sportTitle: game.sport_title,
+        commenceTime: new Date(game.commence_time),
+        bookmakers: game.bookmakers as unknown as Game['bookmakers'],
         bestOdds: bestOdds,
       }
     })
