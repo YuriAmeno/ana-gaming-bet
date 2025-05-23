@@ -84,14 +84,14 @@ function transformToDetailedGame(game: TheOddsApiGame): DetailedGame {
     homeTeam: game.home_team,
     awayTeam: game.away_team,
     sportKey: game.sport_key,
-    bookmakers: game.bookmakers as any,
+    bookmakers: game.bookmakers as unknown as DetailedGame['bookmakers'],
     bestOdds: game.bookmakers[0]?.markets[0]?.outcomes.slice(0, 3).map((outcome, index: number) => ({
       id: `${game.id}-${index}`,
       name: outcome.name,
       value: outcome.price,
       provider: game.bookmakers[0]?.title || 'N/A',
-      bookmaker: game.bookmakers[0] as any,
-      outcome: outcome as any
+      bookmaker: game.bookmakers[0] as unknown as DetailedGame['bestOdds'][0]['bookmaker'],
+      outcome: outcome as unknown as DetailedGame['bestOdds'][0]['outcome']
     })) || [],
     allMarkets: allMarkets
   }

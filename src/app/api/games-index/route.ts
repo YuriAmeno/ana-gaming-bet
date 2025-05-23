@@ -39,14 +39,14 @@ export async function GET() {
             homeTeam: game.home_team,
             awayTeam: game.away_team,
             sportKey: sport,
-            bookmakers: game.bookmakers,
+            bookmakers: game.bookmakers as unknown as Game['bookmakers'],
             bestOdds: game.bookmakers[0]?.markets[0]?.outcomes.slice(0, 3).map((outcome, index: number) => ({
               id: `${game.id}-${index}`,
               name: outcome.name,
               value: outcome.price,
               provider: game.bookmakers[0]?.title || 'N/A',
-              bookmaker: game.bookmakers[0] as any,
-              outcome: outcome
+              bookmaker: game.bookmakers[0] as unknown as Game['bestOdds'][0]['bookmaker'],
+              outcome: outcome as unknown as Game['bestOdds'][0]['outcome']
             })) || []
           }))
         }
@@ -59,9 +59,9 @@ export async function GET() {
 
     const results = await Promise.all(promises)
     results.flat().forEach(game => {
-      allGames[game.id] = game as unknown as Game
+      allGames[game.id] = game
       gamesCache[game.id] = {
-        data: game as unknown as Game,
+        data: game,
         timestamp: Date.now()
       }
     })

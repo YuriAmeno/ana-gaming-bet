@@ -65,6 +65,14 @@ export default function Onboarding() {
     }
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentStep((prev) => (prev + 1) % steps.length)
+    }, 4000)
+
+    return () => clearInterval(interval)
+  }, [steps.length])
+
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(prev => prev + 1);
