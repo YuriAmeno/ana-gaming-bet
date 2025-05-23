@@ -1,4 +1,5 @@
-// src/hooks/useSortedData.ts
+"use client"
+
 import { useMemo } from "react"
 import { orderBy, groupBy } from "lodash"
 import { Game, SportCategory } from "@/types"
