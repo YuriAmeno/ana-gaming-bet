@@ -45,14 +45,32 @@ async function getHomePageData(): Promise<{ categories: SportCategory[]; games: 
   }
 }
 
+async function getGamesFromIndex(): Promise<Game[]> {
+  try {
+    const baseUrl = process.env.APP_URL || "http://localhost:3000"
+    const response = await fetch(`${baseUrl}/api/games-index`, {
+      cache: 'no-store'
+    })
+    
+    if (response.ok) {
+      const gamesIndex = await response.json()
+      return Object.values(gamesIndex)
+    }
+    return []
+  } catch (error) {
+    console.error("Erro ao buscar índice de jogos:", error)
+    return []
+  }
+}
 
 export default async function DashboardPage() {
-  const { categories, games } = await getHomePageData();
+  const { categories } = await getHomePageData();
+  const gamesFromIndex = await getGamesFromIndex()
  return (
    <>
      <Header />
      <div className="container mx-auto mt-6 p-4 sm:p-6 lg:p-8">
-       <DashboardClient initialCategories={categories} initialGames={games} />
+       <DashboardClient initialCategories={categories} initialGames={gamesFromIndex} />
      </div>
    </>
  )

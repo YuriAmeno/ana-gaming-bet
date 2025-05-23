@@ -5,11 +5,33 @@ export interface SportCategory {
   icon?: string
 }
 
+export interface Outcome {
+  id: string
+  name: string
+  price: number
+}
+
 export interface Odd {
   id: string
   name: string
   value: number
   provider: string
+  bookmaker: Bookmaker
+  outcome: Outcome
+}
+
+export interface Bookmaker {
+  title: string
+  markets: Market[]
+}
+
+export interface Market {
+  key: string
+  name: string
+  description: string
+  bookmakers: BookmakerData[]
+  outcomes: Outcome[]
+  last_update: string
 }
 
 export interface Game {
@@ -22,6 +44,9 @@ export interface Game {
   homeTeam?: string
   awayTeam?: string
   sportKey?: string
+  sportTitle?: string
+  commenceTime?: Date
+  bookmakers: Bookmaker[]
 }
 
 // Novo tipo para dados detalhados da odd
